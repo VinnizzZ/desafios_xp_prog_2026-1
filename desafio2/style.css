@@ -1,0 +1,292 @@
+:root {
+    --bg-color: #0f172a;
+    --container-bg: #1e293b;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --primary: #3b82f6;
+    --primary-hover: #2563eb;
+    --success: #10b981;
+    --error: #ef4444;
+    --border: #334155;
+    --slot-bg: #334155;
+    --slot-hover: #475569;
+    --slot-booked: #0f172a;
+    --slot-booked-text: #475569;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    background-image: radial-gradient(circle at top right, #1e293b, #0f172a);
+}
+
+.container {
+    background: var(--container-bg);
+    width: 100%;
+    max-width: 500px;
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255,255,255,0.05);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #60a5fa, #a855f7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+header p {
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.form-group {
+    margin-bottom: 28px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.room-options {
+    display: flex;
+    gap: 12px;
+}
+
+.room-btn {
+    flex: 1;
+    padding: 14px;
+    background: var(--slot-bg);
+    border: 2px solid transparent;
+    color: var(--text-main);
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.room-btn:hover {
+    background: var(--slot-hover);
+    transform: translateY(-2px);
+}
+
+.room-btn.active {
+    background: rgba(59, 130, 246, 0.15);
+    border-color: var(--primary);
+    color: #60a5fa;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+}
+
+.time-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 12px;
+}
+
+.time-btn {
+    padding: 12px 10px;
+    background: var(--slot-bg);
+    border: 2px solid transparent;
+    border-radius: 10px;
+    color: var(--text-main);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.time-btn:hover:not(.booked) {
+    background: var(--slot-hover);
+    transform: translateY(-2px);
+}
+
+.time-btn.selected {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+    transform: translateY(-2px);
+}
+
+.time-btn.booked {
+    background: var(--slot-booked);
+    color: var(--slot-booked-text);
+    text-decoration: line-through;
+    cursor: not-allowed;
+    border-color: var(--border);
+    opacity: 0.7;
+}
+
+.action-area {
+    margin-top: 32px;
+}
+
+.primary-btn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--primary), #8b5cf6);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.primary-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+.primary-btn:disabled {
+    background: var(--slot-bg);
+    color: var(--text-muted);
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+.message {
+    margin-top: 20px;
+    padding: 14px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.message.hidden {
+    display: none;
+}
+
+.message.success {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.message.error {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--error);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.reservations-list {
+    margin-top: 40px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+}
+
+.reservations-list h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+#booked-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#booked-list li {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 16px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s;
+}
+
+#booked-list li:hover:not(.empty-state) {
+    transform: translateX(5px);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+#booked-list li.empty-state {
+    background: transparent;
+    color: var(--text-muted);
+    justify-content: center;
+    border: 1px dashed var(--border);
+    padding: 24px;
+}
+
+.badge-room {
+    background: rgba(59, 130, 246, 0.2);
+    color: #60a5fa;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-right: 12px;
+}
+
+.delete-icon {
+    color: var(--success);
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: rgba(16, 185, 129, 0.15);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.delete-icon::before {
+    content: '✓';
+}
+
+.delete-icon:hover {
+    background: rgba(239, 68, 68, 0.15);
+    color: var(--error);
+}
+
+.delete-icon:hover::before {
+    content: '✕';
+}

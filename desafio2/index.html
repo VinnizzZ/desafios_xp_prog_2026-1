@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva de Salas</title>
+    <meta name="description" content="Sistema de reserva de salas. Escolha sua sala e horário com facilidade.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Reserva de Salas</h1>
+            <p>Escolha uma sala e um horário disponível para sua reunião.</p>
+        </header>
+
+        <main>
+            <div class="form-group">
+                <label id="room-label">Selecione a Sala</label>
+                <div class="room-options" role="group" aria-labelledby="room-label">
+                    <button class="room-btn active" data-room="Sala A">Sala A</button>
+                    <button class="room-btn" data-room="Sala B">Sala B</button>
+                    <button class="room-btn" data-room="Sala C">Sala C</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Horário (8h às 18h)</label>
+                <div class="time-grid" id="time-grid">
+                </div>
+            </div>
+
+            <div class="action-area">
+                <button id="reserve-btn" class="primary-btn" disabled>Reservar Sala</button>
+            </div>
+
+            <div id="message" class="message hidden" role="alert"></div>
+        </main>
+
+        <section class="reservations-list">
+            <h2>Minhas Reservas</h2>
+            <ul id="booked-list">
+                <li class="empty-state">Nenhuma reserva feita.</li>
+            </ul>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
